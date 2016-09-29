@@ -21,6 +21,7 @@ if [ $? -ne 0 ]; then echo "Could not generate the site"; exit 1; fi
 rsync -avze --delete output_prod/ build/
 if [ $? -ne 0 ]; then echo "Could not publish the site"; exit 1; fi
 
-git add build/
-git commit -m"Updated Blog at" `date +"%Y-%m-%d %H:%M:%S"`
+cd build
+git add .
+git commit -m"Updated Blog at `date +"%Y-%m-%d %H:%M:%S"`"
 git push origin master
