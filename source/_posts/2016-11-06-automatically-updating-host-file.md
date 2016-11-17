@@ -25,3 +25,10 @@ sudo sh -c 'wget -O someonewhocares.hosts http://someonewhocares.org/hosts/hosts
 As you can see I use a `sudo` command here. I have to use it, because for security reasons the host file can only be 
 changed by an user with root access.
 This prevents an complete automation of the process with a cronjob or start up script.
+But it can be done a little bit more convenient by aliasing:
+```bash
+alias update-host-file='....'
+```
+From now on, you just have occasionally enter `update-host-file` in you're terminal and your `host` file will be updated.
+
+I think it is a easy solution to block odd server.
