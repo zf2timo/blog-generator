@@ -15,12 +15,13 @@ Thankfully [Dan Pollock](http://someonewhocares.org) has done this or rather is 
 
 With a few commands on Linux operating system this process of updating can be automated:
 ```bash
-sudo sh -c 'wget -O someonewhocares.hosts http://someonewhocares.org/hosts/hosts; cat someonewhocares.hosts /etc/hosts | grep -v -e "^[[:space:]]*$" | grep -v -e "^#" | sort | uniq > /etc/hosts; rm someonewhocares.hosts'
+wget -O someonewhocares.hosts http://someonewhocares.org/hosts/hosts; cat someonewhocares.hosts /etc/hosts | grep -v -e "^[[:space:]]*$" | grep -v -e "^#" | sort | uniq > /etc/hosts; rm someonewhocares.hosts
 ```
-As yo can see I use sudo command - it's simply a security-question: the host file can only be changed by user with root access. So unfortunatels we can't use cronjob or start up script to complete the automation process. But with aliasing we can make the process a bit more convenient: 
+This is a really long command, which we don't like to enter every time a new version of the list is published. Therefore let us automate the process with a cronjob:
 ```bash
-alias update-host-file='....'
+52,22 */4 * * * wget -O someonewhocares.hosts http://someonewhocares.org/hosts/hosts; cat someonewhocares.hosts /etc/hosts | grep -v -e "^[[:space:]]*$" | grep -v -e "^#" | sort | uniq > /etc/hosts; rm someonewhocares.hosts >> /var/log/cron-host-file-update.log 2>&1
 ```
-From now on, you just have to enter `update-host-file` in you're terminal occasionally and your `host` file will be updated.
+Please note that this cronjob has to be registered for the root user. Other users can not write to the `host` file by default.
+Also the time schedule should match you're usage behaviour. 
 
 I think, this is a easy solution to block odd server.
