@@ -28,4 +28,4 @@ if [ $ANSWER = "y" ]; then
     echo $BRANCHES | xargs -n 1 git branch -d
 fi
 ```
-It selects all branches which are merged and after a confirmation, they will be deleted. 
+It selects all branches which are merged into master branch and after a confirmation, they will be deleted.
