@@ -5,7 +5,7 @@ categories: [development]
 ---
 #Delete old git branches
 
-When working with git you ~~should~~ have to use branches. But over the time, there will be a lot of branches that
+When working with git you <s>should</s> have to use branches. But over the time, there will be a lot of branches that
 arn't needed anymore.
 
 To get rid of this waste, i created a script to delete them:
