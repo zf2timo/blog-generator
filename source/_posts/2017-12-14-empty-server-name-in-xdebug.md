@@ -22,7 +22,7 @@ After some research on the internet I finally found the solution:
 My NGINX did not send a Server name in the response. For this reason my IDE was not able to create a proper configuration and 
 map the local directories to remote directories.
  
-To Fix the problem only a single line was missing in my `/etc//nginx/sites-available/default.conf`
+To Fix the problem only a single line was missing in my `/etc/nginx/sites-available/default.conf`
 
 ```nginx
 fastcgi_param SERVER_NAME $server_name;
